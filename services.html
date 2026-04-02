@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — SpineCare Chiropractic</title>
+  <meta name="description" content="Full range of chiropractic services including spinal adjustments, sports injury, massage therapy, auto accident recovery and wellness programs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .service-detail {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(200,150,62,0.1);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+    }
+    .service-detail:nth-child(even) { direction: rtl; }
+    .service-detail:nth-child(even) > * { direction: ltr; }
+    .service-detail-visual {
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      background: linear-gradient(135deg, var(--cream-dark), var(--gold-pale));
+      position: relative;
+      overflow: hidden;
+    }
+    .service-detail-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(200,150,62,0.08));
+    }
+    .service-detail-body {
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .service-detail-body h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      margin-bottom: 12px;
+    }
+    .service-detail-body .gold-line { margin: 12px 0 20px; }
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .service-tag {
+      background: var(--gold-pale);
+      color: var(--gold-dark);
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    @media(max-width:768px){
+      .service-detail { grid-template-columns: 1fr; }
+      .service-detail:nth-child(even) { direction: ltr; }
+      .service-detail-visual { min-height: 200px; }
+      .service-detail-body { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header page-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text"><span data-field="practiceName">SpineCare</span></span>
+    </a>
+    <div class="header-contact">
+      <span class="header-phone">CALL: <strong><a data-field="phone" href="tel:5551234567">(555) 123-4567</a></strong></span>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="btn btn--primary btn--sm" style="margin-left:28px;" data-open-modal="appointment">Request Appointment</button>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="services.html">Services</a>
+  <a href="contact.html">Contact</a>
+  <button class="btn btn--primary" data-open-modal="appointment" style="margin-top:24px;align-self:flex-start;">Request Appointment</button>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="eyebrow">What We Offer</span>
+      <h1>Our Chiropractic Services</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>›</span><span>Services</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+
+<!-- INTRO -->
+<section class="section" style="padding-bottom:48px;">
+  <div class="container container--narrow text-center reveal">
+    <span class="eyebrow">Comprehensive Care</span>
+    <h2>Every Service Designed Around Your Recovery</h2>
+    <div class="gold-line centered"></div>
+    <p style="color:var(--text-muted);font-size:1.05rem;">We offer a complete spectrum of chiropractic and wellness services — all under one roof. Whether you're recovering from an injury or investing in long-term health, we have a treatment plan for you.</p>
+  </div>
+</section>
+
+
+<!-- SERVICE DETAILS -->
+<section class="section" style="padding-top:0;">
+  <div class="container" style="display:flex;flex-direction:column;gap:32px;">
+
+    <!-- 1: Spinal Adjustments -->
+    <div class="service-detail reveal" id="spinal">
+      <div class="service-detail-visual">🦴</div>
+      <div class="service-detail-body">
+        <span class="eyebrow">Our Core Service</span>
+        <h2>Spinal Adjustments</h2>
+        <div class="gold-line"></div>
+        <p>Chiropractic adjustments — also called spinal manipulation — are the cornerstone of what we do. Using precise, controlled force applied to specific joints, we restore proper spinal alignment, relieve nerve pressure, and unlock your body's natural healing potential.</p>
+        <p>We employ multiple adjustment techniques tailored to each patient, including Diversified, Thompson Drop, Activator, and Gonstead methods.</p>
+        <div class="service-tags">
+          <span class="service-tag">Back Pain</span>
+          <span class="service-tag">Neck Pain</span>
+          <span class="service-tag">Headaches</span>
+          <span class="service-tag">Sciatica</span>
+          <span class="service-tag">Herniated Discs</span>
+        </div>
+        <button class="btn btn--primary" style="margin-top:28px;" data-open-modal="appointment">Book This Service</button>
+      </div>
+    </div>
+
+    <!-- 2: Sports Injury -->
+    <div class="service-detail reveal" id="sports">
+      <div class="service-detail-visual">🏃</div>
+      <div class="service-detail-body">
+        <span class="eyebrow">Active Patients</span>
+        <h2>Sports Injury Treatment</h2>
+        <div class="gold-line"></div>
+        <p>Whether you're a competitive athlete or a recreational gym-goer, sports injuries can sideline your training and your life. We specialize in diagnosing and treating sports-related musculoskeletal injuries with a focus on accelerated recovery and performance optimization.</p>
+        <p>Our sports injury protocol combines chiropractic adjustments, soft-tissue therapy, and corrective exercises — getting you back to peak performance faster.</p>
+        <div class="service-tags">
+          <span class="service-tag">Sprains & Strains</span>
+          <span class="service-tag">Runner's Knee</span>
+          <span class="service-tag">Shoulder Injuries</span>
+          <span class="service-tag">IT Band Syndrome</span>
+          <span class="service-tag">Tennis Elbow</span>
+        </div>
+        <button class="btn btn--primary" style="margin-top:28px;" data-open-modal="appointment">Book This Service</button>
+      </div>
+    </div>
+
+    <!-- 3: Massage Therapy -->
+    <div class="service-detail reveal" id="massage">
+      <div class="service-detail-visual">🤲</div>
+      <div class="service-detail-body">
+        <span class="eyebrow">Complementary Therapy</span>
+        <h2>Massage Therapy</h2>
+        <div class="gold-line"></div>
+        <p>Massage therapy and chiropractic care are a powerful combination. Our licensed massage therapists specialize in techniques that prepare muscles and soft tissues for adjustment, reduce recovery time, and extend the benefits of your chiropractic care.</p>
+        <p>Available as standalone sessions or as part of a combined chiropractic + massage care plan.</p>
+        <div class="service-tags">
+          <span class="service-tag">Deep Tissue</span>
+          <span class="service-tag">Trigger Point</span>
+          <span class="service-tag">Swedish Massage</span>
+          <span class="service-tag">Myofascial Release</span>
+          <span class="service-tag">Prenatal Massage</span>
+        </div>
+        <button class="btn btn--primary" style="margin-top:28px;" data-open-modal="appointment">Book This Service</button>
+      </div>
+    </div>
+
+    <!-- 4: Auto Accident -->
+    <div class="service-detail reveal" id="auto">
+      <div class="service-detail-visual">🚗</div>
+      <div class="service-detail-body">
+        <span class="eyebrow">Injury Documentation</span>
+        <h2>Auto Accident Recovery</h2>
+        <div class="gold-line"></div>
+        <p>Auto accidents — even minor ones — can cause significant spinal and soft-tissue injuries that may not surface for hours or days. Early chiropractic intervention is critical for both your recovery and your legal documentation.</p>
+        <p>We work directly with auto insurance companies and personal injury attorneys. Our detailed documentation supports your claim, and we accept personal injury liens in many cases.</p>
+        <div class="service-tags">
+          <span class="service-tag">Whiplash</span>
+          <span class="service-tag">Neck Injury</span>
+          <span class="service-tag">Back Injury</span>
+          <span class="service-tag">Insurance Accepted</span>
+          <span class="service-tag">PIP Claims</span>
+        </div>
+        <button class="btn btn--primary" style="margin-top:28px;" data-open-modal="appointment">Book This Service</button>
+      </div>
+    </div>
+
+    <!-- 5: Wellness -->
+    <div class="service-detail reveal" id="wellness">
+      <div class="service-detail-visual">🌿</div>
+      <div class="service-detail-body">
+        <span class="eyebrow">Long-Term Health</span>
+        <h2>Wellness Programs</h2>
+        <div class="gold-line"></div>
+        <p>Pain relief is just the beginning. Our wellness programs are designed to maintain the gains you've made, prevent future injuries, and support your overall health — so you can live with energy, freedom, and confidence every single day.</p>
+        <p>Customized wellness plans include periodic adjustments, exercise prescriptions, nutritional guidance, and ergonomic coaching.</p>
+        <div class="service-tags">
+          <span class="service-tag">Preventive Care</span>
+          <span class="service-tag">Posture Correction</span>
+          <span class="service-tag">Ergonomics</span>
+          <span class="service-tag">Nutrition Guidance</span>
+          <span class="service-tag">Exercise Plans</span>
+        </div>
+        <button class="btn btn--primary" style="margin-top:28px;" data-open-modal="appointment">Book This Service</button>
+      </div>
+    </div>
+
+    <!-- 6: Pediatric -->
+    <div class="service-detail reveal" id="pediatric">
+      <div class="service-detail-visual">👶</div>
+      <div class="service-detail-body">
+        <span class="eyebrow">Family Care</span>
+        <h2>Pediatric Chiropractic</h2>
+        <div class="gold-line"></div>
+        <p>Children's spines are subject to significant stress from birth, through childhood development, sports, and heavy backpacks. Pediatric chiropractic care uses extremely gentle, low-force techniques that are completely safe and highly effective for children of all ages.</p>
+        <p>Many parents bring children in for colic, ear infections, posture issues, sports injuries, and general wellness support.</p>
+        <div class="service-tags">
+          <span class="service-tag">Newborns & Infants</span>
+          <span class="service-tag">Toddlers</span>
+          <span class="service-tag">School-Age Kids</span>
+          <span class="service-tag">Teen Athletes</span>
+          <span class="service-tag">Scoliosis Screening</span>
+        </div>
+        <button class="btn btn--primary" style="margin-top:28px;" data-open-modal="appointment">Book This Service</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- INSURANCE -->
+<section class="section section--cream-dark">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="eyebrow">Coverage & Payment</span>
+      <h2>Insurance &amp; Payment Options</h2>
+      <div class="gold-line centered"></div>
+      <p>We believe quality chiropractic care should be accessible to everyone. We work with most major insurance providers.</p>
+    </div>
+
+    <div class="grid-4 reveal">
+      <div style="text-align:center;padding:24px 16px;">
+        <div style="font-size:2rem;margin-bottom:10px;">🏥</div>
+        <h4 style="font-size:0.95rem;margin-bottom:6px;">Major Medical</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted);">Blue Cross, Aetna, Cigna, United, Humana & more</p>
+      </div>
+      <div style="text-align:center;padding:24px 16px;">
+        <div style="font-size:2rem;margin-bottom:10px;">🚘</div>
+        <h4 style="font-size:0.95rem;margin-bottom:6px;">Auto Insurance</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted);">PIP, MedPay & liability coverage accepted</p>
+      </div>
+      <div style="text-align:center;padding:24px 16px;">
+        <div style="font-size:2rem;margin-bottom:10px;">🔨</div>
+        <h4 style="font-size:0.95rem;margin-bottom:6px;">Workers' Comp</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted);">Workplace injury treatment and documentation</p>
+      </div>
+      <div style="text-align:center;padding:24px 16px;">
+        <div style="font-size:2rem;margin-bottom:10px;">💳</div>
+        <h4 style="font-size:0.95rem;margin-bottom:6px;">Self-Pay Plans</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted);">Affordable cash rates and payment plans available</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <p style="color:var(--text-muted);margin-bottom:20px;">Not sure if we accept your insurance? Call us and we'll verify your benefits for free.</p>
+      <a class="btn btn--primary btn--lg" data-field="phone" href="tel:5551234567">(555) 123-4567</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="section cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner reveal">
+      <div>
+        <span class="eyebrow">Get Started Today</span>
+        <h2>Not Sure Which Service<br>Is Right for You?</h2>
+        <p>Schedule a free 15-minute consultation. We'll evaluate your needs and recommend the best path forward.</p>
+      </div>
+      <div class="cta-banner-actions">
+        <button class="btn btn--primary btn--lg" data-open-modal="appointment">Free Consultation</button>
+        <a href="contact.html" class="btn btn--outline-white btn--lg">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="site-logo"><div class="logo-icon"></div><span class="logo-text"><span data-field="practiceName">SpineCare</span></span></a>
+        <p>Dedicated to helping you live free from pain. Expert chiropractic care with a patient-first philosophy.</p>
+        <div class="social-links"><a href="#">f</a><a href="#">in</a><a href="#">G</a><a href="#">▶</a></div>
+      </div>
+      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="#spinal">Spinal Adjustments</a></li><li><a href="#sports">Sports Injury Care</a></li><li><a href="#massage">Massage Therapy</a></li><li><a href="#auto">Auto Accident Recovery</a></li><li><a href="#wellness">Wellness Programs</a></li><li><a href="#pediatric">Pediatric Chiro</a></li></ul></div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item"><div><strong>Phone</strong><a data-field="phone" href="tel:5551234567">(555) 123-4567</a></div></div>
+        <div class="footer-contact-item"><div><strong>Address</strong><span data-field="address">123 Wellness Blvd</span><br><span data-field="city">Springfield, IL 62701</span></div></div>
+        <div class="footer-contact-item"><div><strong>Hours</strong><span data-field="hours">Mon–Fri 8am–6pm</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="container"><div class="footer-bottom"><p>© <span id="footerYear"></span> <span data-field="practiceName">SpineCare Chiropractic</span>. All rights reserved.</p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms</a></div></div></div>
+</footer>
+
+<!-- APPOINTMENT MODAL -->
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-header"><div class="modal-header-inner"><div><h3>Request an Appointment</h3><p>We'll confirm within 1 business day.</p></div><button data-close-modal class="modal-close">×</button></div></div>
+    <div class="modal-body">
+      <form id="appointmentForm" novalidate>
+        <div class="form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" required /></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" required /></div></div>
+        <div class="form-row"><div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000" required /></div><div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" /></div></div>
+        <div class="form-row">
+          <div class="form-group"><label>Service</label><select><option value="">Select…</option><option>Spinal Adjustment</option><option>Sports Injury</option><option>Massage Therapy</option><option>Auto Accident</option><option>Wellness</option><option>Pediatric</option></select></div>
+          <div class="form-group"><label>Preferred Date</label><input type="date" /></div>
+        </div>
+        <div class="form-group"><label>Notes</label><textarea rows="3" placeholder="Briefly describe your concern…"></textarea></div>
+        <div class="form-submit"><button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">Submit Request</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button id="resetSetup" title="Edit Settings" style="display:none;position:fixed;bottom:24px;right:24px;z-index:888;width:44px;height:44px;border-radius:50%;background:var(--charcoal);color:var(--gold-light);font-size:1.1rem;border:1px solid rgba(200,150,62,0.3);box-shadow:var(--shadow-md);align-items:center;justify-content:center;cursor:pointer;">⚙</button>
+
+<script>document.getElementById('footerYear').textContent=new Date().getFullYear();</script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpineCare Chiropractic — Home</title>
+  <meta name="description" content="Expert chiropractic care. Schedule your appointment today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ADMIN PANEL -->
+<div id="adminOverlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);" onclick="if(event.target===this)this.style.display='none'">
+  <div style="position:fixed;bottom:0;left:0;right:0;height:70vh;background:#1a1814;border-radius:20px 20px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,0.4);display:flex;flex-direction:column;overflow:hidden;">
+    <div onclick="document.getElementById('adminOverlay').style.display='none'" style="padding:12px 0 8px;cursor:pointer;display:flex;justify-content:center;">
+      <div style="width:40px;height:4px;border-radius:2px;background:#444;"></div>
+    </div>
+    <div style="padding:0 24px;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:12px;flex-wrap:wrap;" id="adminTabs">
+      <button class="admin-tab active" data-tab="practice" style="padding:8px 16px;border-radius:20px;border:none;cursor:pointer;font-size:13px;font-weight:600;background:var(--gold);color:#fff;">Practice</button>
+      <button class="admin-tab" data-tab="branding" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;font-size:13px;font-weight:600;background:transparent;color:#aaa;">Branding</button>
+      <button class="admin-tab" data-tab="content" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;font-size:13px;font-weight:600;background:transparent;color:#aaa;">Content</button>
+      <button class="admin-tab" data-tab="seo" style="padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;font-size:13px;font-weight:600;background:transparent;color:#aaa;">SEO</button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:24px;" id="adminContent">
+      <!-- Practice tab -->
+      <div class="admin-panel" data-panel="practice">
+        <h3 style="color:#fff;font-family:var(--heading);margin-bottom:16px;">Practice Information</h3>
+        <div class="admin-field"><label>Practice Name</label><input type="text" id="admin-practiceName" /></div>
+        <div class="admin-field"><label>Doctor Name</label><input type="text" id="admin-doctorName" /></div>
+        <div class="admin-field"><label>Tagline</label><input type="text" id="admin-tagline" /></div>
+        <div class="admin-field"><label>Phone</label><input type="tel" id="admin-phone" /></div>
+        <div class="admin-field"><label>Email</label><input type="email" id="admin-email" /></div>
+        <div class="admin-field"><label>Address</label><input type="text" id="admin-address" /></div>
+        <div class="admin-field"><label>City, State & ZIP</label><input type="text" id="admin-city" /></div>
+        <div class="admin-field"><label>Office Hours</label><input type="text" id="admin-hours" /></div>
+        <div class="admin-field"><label>Years in Practice</label><input type="text" id="admin-yearsExp" /></div>
+        <div class="admin-field"><label>Patients Helped</label><input type="text" id="admin-patientsHelped" /></div>
+        <div class="admin-field"><label>Logo Initials</label><input type="text" id="admin-logoInitials" maxlength="3" /></div>
+        <div class="admin-field">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" id="admin-showNameWithLogo" style="accent-color:var(--gold);width:16px;height:16px;" /> Show practice name next to logo</label>
+        </div>
+      </div>
+      <!-- Branding tab -->
+      <div class="admin-panel" data-panel="branding" style="display:none;">
+        <h3 style="color:#fff;font-family:var(--heading);margin-bottom:16px;">Branding & Colors</h3>
+        <div class="admin-field"><label>Brand / Accent Color</label><input type="color" id="admin-brandColor" style="width:60px;height:36px;border:none;cursor:pointer;border-radius:8px;" /></div>
+        <div class="admin-field"><label>Logo Image URL</label><input type="text" id="admin-logoUrl" placeholder="https://..." /></div>
+        <div class="admin-field"><label>Hero Background Image URL</label><input type="text" id="admin-heroImageUrl" placeholder="https://..." /></div>
+      </div>
+      <!-- Content tab -->
+      <div class="admin-panel" data-panel="content" style="display:none;">
+        <h3 style="color:#fff;font-family:var(--heading);margin-bottom:16px;">Hero Content</h3>
+        <div class="admin-field"><label>Hero Headline (HTML allowed)</label><textarea id="admin-heroHeadline" rows="2" style="font-family:inherit;"></textarea></div>
+        <div class="admin-field"><label>Hero Description</label><textarea id="admin-heroSub" rows="3" style="font-family:inherit;"></textarea></div>
+        <div class="admin-field"><label>Appointment URL</label><input type="text" id="admin-appointmentUrl" placeholder="https://booking.example.com" /></div>
+      </div>
+      <!-- SEO tab -->
+      <div class="admin-panel" data-panel="seo" style="display:none;">
+        <h3 style="color:#fff;font-family:var(--heading);margin-bottom:16px;">SEO Settings</h3>
+        <div class="admin-field"><label>Page Title Override</label><input type="text" id="admin-pageTitle" placeholder="Practice Name — Chiropractic Care" /></div>
+        <div class="admin-field"><label>Meta Description</label><textarea id="admin-metaDescription" rows="3" maxlength="160" style="font-family:inherit;"></textarea></div>
+      </div>
+      <!-- Save button -->
+      <div style="margin-top:24px;display:flex;gap:12px;">
+        <button id="adminSaveBtn" style="flex:1;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark,#a67530));color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;">Save & Apply</button>
+        <button onclick="document.getElementById('adminOverlay').style.display='none'" style="padding:14px 24px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:#aaa;border-radius:10px;font-size:14px;cursor:pointer;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LICENSE GATE -->
+<div id="licenseOverlay" class="setup-overlay" style="z-index:10001;">
+  <div class="setup-card" style="max-width:420px;">
+    <div class="setup-header">
+      <div style="width:56px;height:56px;background:linear-gradient(135deg,#1a4d2e,#2d6b42);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C8963E" stroke-width="2" width="28" height="28"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h2>Activate Your License</h2>
+      <p>Enter your email and license key from your purchase confirmation.</p>
+    </div>
+    <div style="padding:0 32px 32px;">
+      <div class="form-group">
+        <label>Purchase Email</label>
+        <input type="email" id="licenseEmail" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label>License Key</label>
+        <input type="text" id="licenseKey" placeholder="WSW-XXXX-XXXX-XXXX" style="font-family:monospace;letter-spacing:0.05em;text-transform:uppercase;" maxlength="19" />
+      </div>
+      <p id="licenseError" style="color:#c0392b;font-size:13px;margin-bottom:12px;display:none;"></p>
+      <button id="licenseActivateBtn" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark,#a67530));color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">Activate Template</button>
+      <p style="text-align:center;margin-top:16px;font-size:12px;color:#999;">Don't have a key? <a href="mailto:support@wellspringweb.com" style="color:var(--gold);">Contact Support</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- SETUP WIZARD -->
+<div id="setupOverlay" class="setup-overlay">
+  <div class="setup-card">
+    <div class="setup-header">
+      <div style="width:48px;height:48px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:1.5rem;color:#fff;font-weight:700;">+</div>
+      <h2>Welcome to ChiroElite Pro</h2>
+      <p>Personalize your chiropractic website in under 2 minutes — no database, no coding.</p>
+    </div>
+    <div class="setup-steps">
+      <div class="setup-step-indicator active"></div>
+      <div class="setup-step-indicator"></div>
+      <div class="setup-step-indicator"></div>
+      <div class="setup-step-indicator"></div>
+    </div>
+    <div class="setup-body">
+      <!-- Step 1 -->
+      <div class="setup-step active" data-step="1">
+        <h3>Your Practice</h3>
+        <p class="step-sub">Basic information about your chiropractic practice.</p>
+        <div class="form-group">
+          <label for="setupPracticeName">Practice Name *</label>
+          <input type="text" id="setupPracticeName" placeholder="e.g. SpineCare Chiropractic" />
+        </div>
+        <div class="form-group">
+          <label for="setupDoctorName">Doctor / Owner Name *</label>
+          <input type="text" id="setupDoctorName" placeholder="e.g. Dr. Sarah Mitchell, D.C." />
+        </div>
+        <div class="form-group">
+          <label for="setupTagline">Your Tagline</label>
+          <input type="text" id="setupTagline" placeholder="e.g. Live Without Limits" />
+        </div>
+        <div class="form-group">
+          <label for="setupInitials">Logo Initials (2–3 letters)</label>
+          <input type="text" id="setupInitials" placeholder="e.g. SC" maxlength="3" />
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="setup-step" data-step="2">
+        <h3>Contact Details</h3>
+        <p class="step-sub">How can patients reach you?</p>
+        <div class="form-group">
+          <label for="setupPhone">Phone Number</label>
+          <input type="tel" id="setupPhone" placeholder="(555) 123-4567" />
+        </div>
+        <div class="form-group">
+          <label for="setupEmail">Email Address</label>
+          <input type="email" id="setupEmail" placeholder="info@yourpractice.com" />
+        </div>
+        <div class="form-group">
+          <label for="setupAddress">Street Address</label>
+          <input type="text" id="setupAddress" placeholder="123 Wellness Blvd, Suite 200" />
+        </div>
+        <div class="form-group">
+          <label for="setupCity">City, State &amp; ZIP</label>
+          <input type="text" id="setupCity" placeholder="Springfield, IL 62701" />
+        </div>
+        <div class="form-group">
+          <label for="setupHours">Office Hours</label>
+          <input type="text" id="setupHours" placeholder="Mon–Fri 8am–6pm | Sat 9am–2pm" />
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="setup-step" data-step="3">
+        <h3>Your Achievements</h3>
+        <p class="step-sub">Displayed in the trust bar — builds instant credibility.</p>
+        <div class="form-group">
+          <label for="setupYearsExp">Years in Practice</label>
+          <input type="text" id="setupYearsExp" placeholder="e.g. 15+" />
+        </div>
+        <div class="form-group">
+          <label for="setupPatients">Patients Helped</label>
+          <input type="text" id="setupPatients" placeholder="e.g. 8,000+" />
+        </div>
+        <div style="background:rgba(200,150,62,0.08);padding:16px;border-radius:8px;border-left:3px solid var(--gold);">
+          <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">💡 Real numbers — even modest ones — dramatically increase patient trust and conversion.</p>
+        </div>
+      </div>
+      <!-- Step 4 -->
+      <div class="setup-step" data-step="4">
+        <h3>Brand Color</h3>
+        <p class="step-sub">Your accent color — applied site-wide instantly.</p>
+        <input type="hidden" id="brandColor" value="#C8963E" />
+        <div class="color-swatches">
+          <div class="swatch selected" data-color="#C8963E" style="background:#C8963E;" title="Classic Gold"></div>
+          <div class="swatch" data-color="#2E7D9A" style="background:#2E7D9A;" title="Ocean Blue"></div>
+          <div class="swatch" data-color="#3A7D44" style="background:#3A7D44;" title="Forest Green"></div>
+          <div class="swatch" data-color="#7B3FA0" style="background:#7B3FA0;" title="Royal Purple"></div>
+          <div class="swatch" data-color="#C0392B" style="background:#C0392B;" title="Deep Red"></div>
+          <div class="swatch" data-color="#1A5276" style="background:#1A5276;" title="Navy Blue"></div>
+          <div class="swatch" data-color="#B7770D" style="background:#B7770D;" title="Amber"></div>
+          <div class="swatch" data-color="#2C3E50" style="background:#2C3E50;" title="Slate"></div>
+        </div>
+        <div class="swatch-custom">
+          <label for="customColorPicker" style="text-transform:none;letter-spacing:0;font-weight:400;margin:0;">Custom color:</label>
+          <input type="color" id="customColorPicker" value="#C8963E" />
+        </div>
+        <div style="margin-top:28px;padding:20px;background:var(--cream);border-radius:8px;">
+          <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">🎉 <strong>You're ready!</strong> Click <em>Launch My Site</em> to go live. Use the ⚙ gear icon anytime to update your settings.</p>
+        </div>
+      </div>
+      <!-- Wizard nav -->
+      <div class="setup-footer">
+        <span class="step-count" id="stepCount">Step 1 of 4</span>
+        <div style="display:flex;gap:12px;">
+          <button id="setupBack" class="btn btn--outline btn--sm" style="visibility:hidden;">← Back</button>
+          <button id="setupNext" class="btn btn--primary">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text"><span data-field="practiceName">SpineCare</span></span>
+    </a>
+    <div class="header-contact">
+      <span class="header-phone">CALL: <strong><a data-field="phone" href="tel:5551234567">(555) 123-4567</a></strong></span>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="btn btn--primary btn--sm" style="margin-left:28px;" data-open-modal="appointment">Request Appointment</button>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="services.html">Services</a>
+  <a href="contact.html">Contact</a>
+  <button class="btn btn--primary" data-open-modal="appointment" style="margin-top:24px;align-self:flex-start;">Request Appointment</button>
+</nav>
+
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <!-- Decorative spine graphic -->
+  <svg style="position:absolute;right:5%;top:50%;transform:translateY(-50%);opacity:0.06;z-index:1;" width="300" height="600" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="130" y="0" width="40" height="600" rx="20" fill="#C8963E"/>
+    <rect x="80" y="60" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="120" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="180" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="240" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="300" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="360" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="420" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="480" width="140" height="36" rx="18" fill="#C8963E"/>
+    <rect x="80" y="540" width="140" height="36" rx="18" fill="#C8963E"/>
+  </svg>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-diagonal">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <h1 data-html="heroHeadline">Restore Your Health,<br><strong>Reclaim Your Life</strong></h1>
+      <p class="hero-sub" data-html="heroSub">Expert chiropractic care tailored to your body. From acute pain relief to long-term wellness — your partner in living pain-free.</p>
+      <div class="hero-actions">
+        <button class="btn btn--primary btn--lg" data-open-modal="appointment">
+          Request an Appointment
+        </button>
+        <a href="services.html" class="btn btn--outline-white btn--lg">Our Services</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- ===================== TRUST BAR ===================== -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <strong data-field="yearsExp">15+</strong>
+        <span>Years of<br>Experience</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <strong data-field="patientsHelped">8,000+</strong>
+        <span>Patients<br>Helped</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <strong data-field="satisfaction">98%</strong>
+        <span>Patient<br>Satisfaction</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <strong>★★★★★</strong>
+        <span>5-Star Rated<br>on Google</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <span style="font-size:0.78rem;letter-spacing:0.06em;color:rgba(200,185,168,0.7);">Accepting<br>New Patients</span>
+        <span style="width:10px;height:10px;background:#4CAF50;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(76,175,80,0.5)}50%{box-shadow:0 0 0 6px rgba(76,175,80,0)}}
+</style>
+
+
+<!-- ===================== SERVICES OVERVIEW ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">What We Treat</span>
+      <h2>Comprehensive Chiropractic<br>Care for Every Body</h2>
+      <div class="gold-line"></div>
+      <p>From your first visit to ongoing wellness, we offer a full spectrum of chiropractic services designed around your unique needs and goals.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-body">
+          <div class="service-card-icon">🦴</div>
+          <h3>Spinal Adjustments</h3>
+          <p>Precise, gentle adjustments to restore proper alignment, reduce nerve interference, and eliminate pain at the source.</p>
+          <a href="services.html" class="service-card-link">Learn More</a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-body">
+          <div class="service-card-icon">🏃</div>
+          <h3>Sports Injury Care</h3>
+          <p>Specialized treatment to accelerate recovery, restore peak performance, and prevent recurring sports-related injuries.</p>
+          <a href="services.html" class="service-card-link">Learn More</a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-card-body">
+          <div class="service-card-icon">🤲</div>
+          <h3>Massage Therapy</h3>
+          <p>Therapeutic massage to release muscle tension, improve circulation, and complement your chiropractic treatment plan.</p>
+          <a href="services.html" class="service-card-link">Learn More</a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-body">
+          <div class="service-card-icon">🚗</div>
+          <h3>Auto Accident Recovery</h3>
+          <p>Whiplash and soft-tissue injury treatment after auto accidents — we work with insurance and help document your care.</p>
+          <a href="services.html" class="service-card-link">Learn More</a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-body">
+          <div class="service-card-icon">🌿</div>
+          <h3>Wellness Programs</h3>
+          <p>Proactive care plans to maintain spinal health, boost immunity, and help you feel your absolute best every day.</p>
+          <a href="services.html" class="service-card-link">Learn More</a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-card-body">
+          <div class="service-card-icon">👶</div>
+          <h3>Pediatric Chiropractic</h3>
+          <p>Safe, gentle care for children of all ages — from newborns to teens — supporting healthy development and posture.</p>
+          <a href="services.html" class="service-card-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:52px;" class="reveal">
+      <a href="services.html" class="btn btn--outline btn--lg">View All Services</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== ABOUT SPLIT ===================== -->
+<section class="section section--cream-dark">
+  <div class="container">
+    <div class="grid-2">
+      <div class="split-image reveal">
+        <!-- Replace src with actual doctor photo -->
+        <div style="width:100%;height:100%;min-height:480px;background:linear-gradient(160deg,#3A2A18 0%,#5A4028 40%,#7A5A38 100%);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:6rem;color:rgba(200,150,62,0.25);">+</div>
+        <div class="split-image-badge">
+          <strong data-field="yearsExp">15+</strong>
+          <span>Years Serving<br>Our Community</span>
+        </div>
+      </div>
+      <div class="split-content reveal reveal-delay-2">
+        <span class="eyebrow">About Our Practice</span>
+        <h2>A Practice Built on<br>Results &amp; Trust</h2>
+        <div class="gold-line"></div>
+        <p><strong data-field="doctorName">Dr. Sarah Mitchell</strong> and the team at <span data-field="practiceName">SpineCare Chiropractic</span> are dedicated to one thing: getting you out of pain and back to the life you love.</p>
+        <p>We take a whole-body approach — combining precise adjustments, soft-tissue therapy, and personalized wellness plans to address the root cause of your pain, not just the symptoms.</p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <p>Board-certified chiropractors with advanced training in spinal health</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <p>Personalized treatment plans — never a one-size-fits-all approach</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <p>Most insurance plans accepted, including auto injury &amp; workers' comp</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check">✓</div>
+            <p>Flexible scheduling with early morning and Saturday hours</p>
+          </div>
+        </div>
+        <a href="about.html" class="btn btn--primary">Meet Our Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CONDITIONS WE TREAT ===================== -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="eyebrow">Conditions We Treat</span>
+      <h2>We Can Help With</h2>
+      <div class="gold-line centered"></div>
+    </div>
+
+    <div class="grid-4 reveal">
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">⚡</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Back Pain</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Upper, mid &amp; lower back</p>
+      </div>
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🔄</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Neck Pain</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Stiffness &amp; whiplash</p>
+      </div>
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🧠</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Headaches</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Tension &amp; migraines</p>
+      </div>
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🦵</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Sciatica</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Leg pain &amp; numbness</p>
+      </div>
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🤕</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Herniated Discs</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Disc bulge &amp; compression</p>
+      </div>
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">💼</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Posture Issues</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Tech neck &amp; desk posture</p>
+      </div>
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🏋️</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Sports Injuries</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Sprains, strains &amp; more</p>
+      </div>
+      <div style="text-align:center;padding:28px 20px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🤰</div>
+        <h4 style="color:var(--cream);font-size:1rem;margin-bottom:6px;">Prenatal Care</h4>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Comfort during pregnancy</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="eyebrow">Patient Stories</span>
+      <h2>What Our Patients Say</h2>
+      <div class="gold-line centered"></div>
+      <p>Real results from real people who chose to invest in their health.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="star-rating">★★★★★</div>
+        <p class="testimonial-text">After three years of chronic back pain, I was skeptical. Within four visits, I was sleeping through the night for the first time in years. This office genuinely changed my life.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MR</div>
+          <div>
+            <div class="author-name">Michael R.</div>
+            <div class="author-sub">Patient since 2021</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="star-rating">★★★★★</div>
+        <p class="testimonial-text">I came in after a car accident and they handled everything — from treatment to dealing with insurance. Professional, thorough, and incredibly caring staff throughout.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JS</div>
+          <div>
+            <div class="author-name">Jennifer S.</div>
+            <div class="author-sub">Auto Accident Patient</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="star-rating">★★★★★</div>
+        <p class="testimonial-text">As a marathon runner, knee and hip pain was derailing my training. The sports injury protocol here got me back on track — and running stronger than before.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">DK</div>
+          <div>
+            <div class="author-name">David K.</div>
+            <div class="author-sub">Sports Injury Patient</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CTA BANNER ===================== -->
+<section class="section cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner reveal">
+      <div>
+        <span class="eyebrow">Ready to Feel Better?</span>
+        <h2>Your First Step Toward<br>a Pain-Free Life Starts Here</h2>
+        <p>New patients welcome. Most insurance accepted. Same-week appointments often available.</p>
+      </div>
+      <div class="cta-banner-actions">
+        <button class="btn btn--primary btn--lg" data-open-modal="appointment">Book Appointment</button>
+        <a class="btn btn--outline-white btn--lg" data-field="phone" href="tel:5551234567">(555) 123-4567</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="site-logo" style="margin-bottom:0;">
+          <div class="logo-icon"></div>
+          <span class="logo-text"><span data-field="practiceName">SpineCare</span></span>
+        </a>
+        <p>Dedicated to helping you live free from pain. Expert chiropractic care with a patient-first philosophy.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">in</a>
+          <a href="#" aria-label="Google">G</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#" data-open-modal="appointment">Request Appointment</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Spinal Adjustments</a></li>
+          <li><a href="services.html">Sports Injury Care</a></li>
+          <li><a href="services.html">Massage Therapy</a></li>
+          <li><a href="services.html">Auto Accident Recovery</a></li>
+          <li><a href="services.html">Wellness Programs</a></li>
+          <li><a href="services.html">Pediatric Chiropractic</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item"><div><strong>Phone</strong><a data-field="phone" href="tel:5551234567">(555) 123-4567</a></div></div>
+        <div class="footer-contact-item"><div><strong>Email</strong><a data-field="email" href="#">info@spinecare.com</a></div></div>
+        <div class="footer-contact-item"><div><strong>Address</strong><span data-field="address">123 Wellness Blvd</span><br><span data-field="city">Springfield, IL 62701</span></div></div>
+        <div class="footer-contact-item"><div><strong>Hours</strong><span data-field="hours">Mon–Fri 8am–6pm</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© <span id="footerYear"></span> <span data-field="practiceName">SpineCare Chiropractic</span>. All rights reserved.</p>
+      <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Accessibility</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- APPOINTMENT MODAL -->
+<div id="modalOverlay" class="modal-overlay">
+  <div id="appointmentModal" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-header-inner">
+        <div><h3>Request an Appointment</h3><p>We'll confirm within 1 business day.</p></div>
+        <button data-close-modal class="modal-close" aria-label="Close">×</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <form id="appointmentForm" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label for="apptFirst">First Name</label><input type="text" id="apptFirst" placeholder="Jane" required /></div>
+          <div class="form-group"><label for="apptLast">Last Name</label><input type="text" id="apptLast" placeholder="Smith" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="apptPhone">Phone</label><input type="tel" id="apptPhone" placeholder="(555) 000-0000" required /></div>
+          <div class="form-group"><label for="apptEmail">Email</label><input type="email" id="apptEmail" placeholder="you@email.com" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="apptService">Service Needed</label>
+            <select id="apptService">
+              <option value="">Select a service…</option>
+              <option>Spinal Adjustment</option><option>Sports Injury</option>
+              <option>Massage Therapy</option><option>Auto Accident</option>
+              <option>Wellness Program</option><option>New Patient Consult</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="apptDate">Preferred Date</label><input type="date" id="apptDate" /></div>
+        </div>
+        <div class="form-group"><label for="apptNotes">Describe Your Concern</label><textarea id="apptNotes" rows="3" placeholder="Briefly describe your symptoms…"></textarea></div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">Submit Request</button>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-muted);text-align:center;margin-top:12px;">Your information is private and never shared.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Gear -->
+<button id="resetSetup" title="Edit Site Settings" style="display:none;position:fixed;bottom:24px;right:24px;z-index:888;width:44px;height:44px;border-radius:50%;background:var(--charcoal);color:var(--gold-light);font-size:1.1rem;border:1px solid rgba(200,150,62,0.3);box-shadow:var(--shadow-md);align-items:center;justify-content:center;cursor:pointer;transition:var(--t-fast);">⚙</button>
+
+<script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
+<script src="js/main.js"></script>
+</body>
+</html>

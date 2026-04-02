@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — SpineCare Chiropractic</title>
+  <meta name="description" content="Contact us to schedule an appointment or get directions to our chiropractic office.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-info-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 36px 32px;
+      border: 1px solid rgba(200,150,62,0.12);
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+    }
+    .contact-info-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .contact-info-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .contact-info-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gold-pale);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .contact-info-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+    .contact-info-value {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+    .contact-info-value a { color: inherit; transition: var(--t-fast); }
+    .contact-info-value a:hover { color: var(--gold); }
+
+    .hours-table { width: 100%; }
+    .hours-table tr td {
+      padding: 7px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .hours-table tr:last-child td { border-bottom: none; }
+    .hours-table td:first-child { color: var(--text-muted); font-weight: 500; }
+    .hours-table td:last-child { text-align: right; color: var(--text-body); }
+    .hours-today td { color: var(--gold-dark) !important; font-weight: 600; }
+
+    .map-placeholder {
+      width: 100%;
+      height: 360px;
+      background: linear-gradient(135deg, var(--cream-dark) 0%, var(--gold-pale) 100%);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border: 2px dashed rgba(200,150,62,0.3);
+      color: var(--text-muted);
+    }
+    .map-placeholder .map-icon { font-size: 3rem; }
+    .map-placeholder p { font-size: 0.85rem; text-align: center; max-width: 260px; line-height: 1.6; }
+    .map-placeholder code {
+      background: rgba(200,150,62,0.12);
+      color: var(--gold-dark);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(200,150,62,0.15);
+      padding: 24px 0;
+    }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-q::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: var(--t-fast);
+    }
+    .faq-item.open .faq-q::after { content: '–'; }
+    .faq-a {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header page-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text"><span data-field="practiceName">SpineCare</span></span>
+    </a>
+    <div class="header-contact">
+      <span class="header-phone">CALL: <strong><a data-field="phone" href="tel:5551234567">(555) 123-4567</a></strong></span>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <button class="btn btn--primary btn--sm" style="margin-left:28px;" data-open-modal="appointment">Request Appointment</button>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="services.html">Services</a>
+  <a href="contact.html">Contact</a>
+  <button class="btn btn--primary" data-open-modal="appointment" style="margin-top:24px;align-self:flex-start;">Request Appointment</button>
+</nav>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="eyebrow">Reach Us</span>
+      <h1>Contact &amp; Location</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>›</span><span>Contact</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT MAIN -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="gap:56px;align-items:flex-start;">
+
+      <!-- Left: Form -->
+      <div class="reveal">
+        <span class="eyebrow">Send Us a Message</span>
+        <h2>Get in Touch</h2>
+        <div class="gold-line"></div>
+        <p style="color:var(--text-muted);margin-bottom:36px;">Have questions, need directions, or want to request an appointment? Fill out the form and our team will respond within 1 business day.</p>
+
+        <div class="contact-form">
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cfFirst">First Name *</label>
+                <input type="text" id="cfFirst" placeholder="Jane" required />
+              </div>
+              <div class="form-group">
+                <label for="cfLast">Last Name *</label>
+                <input type="text" id="cfLast" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cfPhone">Phone *</label>
+                <input type="tel" id="cfPhone" placeholder="(555) 000-0000" required />
+              </div>
+              <div class="form-group">
+                <label for="cfEmail">Email</label>
+                <input type="email" id="cfEmail" placeholder="you@email.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cfSubject">Subject</label>
+              <select id="cfSubject">
+                <option value="">Choose a topic…</option>
+                <option>Schedule an Appointment</option>
+                <option>Insurance Verification</option>
+                <option>General Question</option>
+                <option>New Patient Information</option>
+                <option>Auto Accident / Workers' Comp</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cfMessage">Message *</label>
+              <textarea id="cfMessage" rows="5" placeholder="How can we help you today?" required></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">
+                Send Message
+              </button>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted);text-align:center;margin-top:12px;">
+              We respect your privacy. Your information is never sold or shared.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Info cards -->
+      <div style="display:flex;flex-direction:column;gap:24px;" class="reveal reveal-delay-2">
+
+        <div class="contact-info-card">
+          <h3>Contact Information</h3>
+          <div class="contact-info-row">
+            <div class="contact-info-icon">📞</div>
+            <div>
+              <div class="contact-info-label">Phone</div>
+              <div class="contact-info-value"><a data-field="phone" href="tel:5551234567">(555) 123-4567</a></div>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-info-icon">✉️</div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <div class="contact-info-value"><a data-field="email" href="#">info@spinecare.com</a></div>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-info-icon">📍</div>
+            <div>
+              <div class="contact-info-label">Address</div>
+              <div class="contact-info-value">
+                <span data-field="address">123 Wellness Blvd, Suite 200</span><br>
+                <span data-field="city">Springfield, IL 62701</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-info-row" style="margin-bottom:0;">
+            <div class="contact-info-icon">🌐</div>
+            <div>
+              <div class="contact-info-label">Social Media</div>
+              <div class="contact-info-value">
+                <div class="social-links" style="margin-top:6px;">
+                  <a href="#" aria-label="Facebook" style="border-color:rgba(200,150,62,0.4);">f</a>
+                  <a href="#" aria-label="Instagram">in</a>
+                  <a href="#" aria-label="Google">G</a>
+                  <a href="#" aria-label="YouTube">▶</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <h3>Office Hours</h3>
+          <table class="hours-table">
+            <tbody>
+              <tr id="hoursMon"><td>Monday</td><td>8:00 AM – 6:00 PM</td></tr>
+              <tr id="hoursTue"><td>Tuesday</td><td>8:00 AM – 6:00 PM</td></tr>
+              <tr id="hoursWed"><td>Wednesday</td><td>8:00 AM – 6:00 PM</td></tr>
+              <tr id="hoursThu"><td>Thursday</td><td>8:00 AM – 6:00 PM</td></tr>
+              <tr id="hoursFri"><td>Friday</td><td>8:00 AM – 5:00 PM</td></tr>
+              <tr id="hoursSat"><td>Saturday</td><td>9:00 AM – 2:00 PM</td></tr>
+              <tr id="hoursSun"><td>Sunday</td><td style="color:var(--text-muted);">Closed</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:16px;padding:12px 16px;background:rgba(76,175,80,0.08);border-radius:var(--radius-sm);border:1px solid rgba(76,175,80,0.2);display:flex;align-items:center;gap:10px;">
+            <span style="width:8px;height:8px;background:#4CAF50;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite;"></span>
+            <span style="font-size:0.8rem;color:#2E7D32;font-weight:500;">Currently accepting new patients</span>
+          </div>
+        </div>
+
+        <button class="btn btn--primary" data-open-modal="appointment" style="justify-content:center;">
+          📅 &nbsp; Book an Appointment Online
+        </button>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MAP -->
+<section class="section section--cream-dark" style="padding-top:0;">
+  <div class="container reveal">
+    <div class="map-placeholder">
+      <!-- To embed a real Google Map, replace this div with your iframe embed code:
+           <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="360" style="border:0;border-radius:var(--radius-md);" allowfullscreen loading="lazy"></iframe>
+      -->
+      <div class="map-icon">📍</div>
+      <strong style="color:var(--dark);font-size:1.1rem;font-family:var(--font-display);">Your Practice Location</strong>
+      <p>Replace this placeholder with your Google Maps embed code. It takes less than 60 seconds.</p>
+      <code>&lt;iframe src="maps.google.com/..."&gt;&lt;/iframe&gt;</code>
+      <a href="#" class="btn btn--outline btn--sm" style="margin-top:8px;">Get Directions →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container container--narrow">
+    <div class="section-header centered reveal">
+      <span class="eyebrow">Common Questions</span>
+      <h2>Frequently Asked Questions</h2>
+      <div class="gold-line centered"></div>
+    </div>
+
+    <div class="reveal">
+      <div class="faq-item">
+        <div class="faq-q">Do I need a referral to see a chiropractor?</div>
+        <div class="faq-a">No referral is needed. You can contact us directly to schedule a new patient appointment. In most states, chiropractic care is considered primary care and you can self-refer at any time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does chiropractic care hurt?</div>
+        <div class="faq-a">Most patients experience relief immediately following an adjustment. Some may notice mild soreness for 24–48 hours, similar to the feeling after exercise. Our doctors adjust their technique based on your comfort level.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What should I bring to my first appointment?</div>
+        <div class="faq-a">Please bring a photo ID, your insurance card, any relevant X-rays or MRI results, and a list of current medications. Arrive 10 minutes early to complete your new patient paperwork — or download our forms in advance from this website.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How many visits will I need?</div>
+        <div class="faq-a">Every patient is different. After a comprehensive evaluation on your first visit, we'll give you a realistic treatment plan with estimated visit frequency and duration. Many acute cases resolve in 6–12 visits; chronic conditions may require longer-term care.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you accept my insurance?</div>
+        <div class="faq-a">We accept most major medical insurance plans, auto insurance (PIP/MedPay), and workers' compensation. Call our office and we'll verify your benefits at no charge before your first appointment.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is chiropractic care safe during pregnancy?</div>
+        <div class="faq-a">Yes — prenatal chiropractic care is safe and highly effective for relieving back pain, sciatica, and pelvic discomfort during pregnancy. Our doctors are certified in the Webster Technique, a specific prenatal chiropractic protocol.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="section cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner reveal">
+      <div>
+        <span class="eyebrow">We'd Love to Help</span>
+        <h2>Don't Wait to Feel Better</h2>
+        <p>Same-week appointments are usually available. Call now or request online.</p>
+      </div>
+      <div class="cta-banner-actions">
+        <button class="btn btn--primary btn--lg" data-open-modal="appointment">Book Online</button>
+        <a class="btn btn--outline-white btn--lg" data-field="phone" href="tel:5551234567">(555) 123-4567</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="site-logo"><div class="logo-icon"></div><span class="logo-text"><span data-field="practiceName">SpineCare</span></span></a>
+        <p>Dedicated to helping you live free from pain. Expert chiropractic care with a patient-first philosophy.</p>
+        <div class="social-links"><a href="#">f</a><a href="#">in</a><a href="#">G</a><a href="#">▶</a></div>
+      </div>
+      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Spinal Adjustments</a></li><li><a href="services.html">Sports Injury Care</a></li><li><a href="services.html">Massage Therapy</a></li><li><a href="services.html">Auto Accident Recovery</a></li><li><a href="services.html">Wellness Programs</a></li></ul></div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item"><div><strong>Phone</strong><a data-field="phone" href="tel:5551234567">(555) 123-4567</a></div></div>
+        <div class="footer-contact-item"><div><strong>Address</strong><span data-field="address">123 Wellness Blvd</span><br><span data-field="city">Springfield, IL 62701</span></div></div>
+        <div class="footer-contact-item"><div><strong>Hours</strong><span data-field="hours">Mon–Fri 8am–6pm</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="container"><div class="footer-bottom"><p>© <span id="footerYear"></span> <span data-field="practiceName">SpineCare Chiropractic</span>. All rights reserved.</p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms</a></div></div></div>
+</footer>
+
+<!-- APPOINTMENT MODAL -->
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-header"><div class="modal-header-inner"><div><h3>Request an Appointment</h3><p>We'll confirm within 1 business day.</p></div><button data-close-modal class="modal-close">×</button></div></div>
+    <div class="modal-body">
+      <form id="appointmentForm" novalidate>
+        <div class="form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" required /></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" required /></div></div>
+        <div class="form-row"><div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000" required /></div><div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" /></div></div>
+        <div class="form-row">
+          <div class="form-group"><label>Service</label><select><option>Select…</option><option>Spinal Adjustment</option><option>Sports Injury</option><option>Massage Therapy</option><option>Auto Accident</option><option>Wellness</option></select></div>
+          <div class="form-group"><label>Preferred Date</label><input type="date" /></div>
+        </div>
+        <div class="form-group"><label>Notes</label><textarea rows="3" placeholder="Briefly describe your concern…"></textarea></div>
+        <div class="form-submit"><button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">Submit Request</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button id="resetSetup" title="Edit Settings" style="display:none;position:fixed;bottom:24px;right:24px;z-index:888;width:44px;height:44px;border-radius:50%;background:var(--charcoal);color:var(--gold-light);font-size:1.1rem;border:1px solid rgba(200,150,62,0.3);box-shadow:var(--shadow-md);align-items:center;justify-content:center;cursor:pointer;">⚙</button>
+
+<script>
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+  // Highlight today's hours
+  const days = ['hoursSun','hoursMon','hoursTue','hoursWed','hoursThu','hoursFri','hoursSat'];
+  const todayRow = document.getElementById(days[new Date().getDay()]);
+  if(todayRow) todayRow.classList.add('hours-today');
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', function(){
+      const item = this.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
